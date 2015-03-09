@@ -1,0 +1,23 @@
+{
+  "name": "afanasjeva-test",
+  "version": "0.0.0",
+  "authors": [
+    "Eugene Dementjev <daemos@guitarplayer.ru>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.3.1",
+    "rxjs": "~2.3.22",
+    "Chart.js": "~1.0.1"
+  }
+}

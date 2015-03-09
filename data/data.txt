@@ -1,0 +1,6 @@
+Cash surplus/deficit (% of GDP)	GC.BAL.CASH.GD.ZS
+Wholesale price index (2010 = 100)	FP.WPI.TOTL
+Consumer price index (2010 = 100)	FP.CPI.TOTL
+Unemployment, total (% of total labor force) (national estimate)	SL.UEM.TOTL.NE.ZS
+GDP per capita, PPP (current international $)	NY.GDP.PCAP.PP.CD
+GNI, PPP (current international $)	NY.GNP.PCAP.PP.CD

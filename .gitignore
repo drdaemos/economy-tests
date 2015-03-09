@@ -1,0 +1,10 @@
+.tmp/
+bower_components/
+dist/
+node_modules/
+composer.phar
+composer.lock
+src/app/vendor/
+.sublime-grunt.cache
+cache/
+components/

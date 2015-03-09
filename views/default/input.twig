@@ -1,0 +1,37 @@
+{% extends "master.twig" %}
+
+{% block page %}
+
+	{% if data %}
+	{% for country in data %}
+	<h3>{{ country.name }}</h3>
+	<table class="table">
+		<tr>
+			<th>#</th>
+			<th>Date</th>
+			<th>WPI</th>
+			<th>CPI</th>
+			<th>Unemployment</th>
+			<th>Net lending/borrowing</th>
+			<th>GDP</th>
+			<th>GNI</th>
+		</tr>
+
+		{% for item in country.data %}
+		<tr>
+			<td>{{ loop.index }}</td>
+			<td>{{ item.date | round(4) }}</td>
+			<td>{{ item.wpi | round(4) }}</td>
+			<td>{{ item.cpi | round(4) }}</td>
+			<td>{{ item.unemployment | round(4) }}</td>
+			<td>{{ item.net | round(4) }}</td>		
+			<td>{{ item.gdp | round(4) }}</td>	
+			<td>{{ item.gni | round(4) }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<hr>
+	{% endfor %}
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block head %}
+			<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+			<meta charset="utf-8">
+			<title>{{ title }} - 2003-2013 Economy Dynamics</title>
+			{% include 'layout/head.twig' %}
+		{% endblock %}
+	</head>
+	<body>
+		{% block header %}
+				{% include 'layout/header.twig' %}         
+		{% endblock %}
+
+		<div class="container content-block">	
+			<div class="row">
+			<div class="col-sm-3">
+					{% block aside %}
+						{% include 'layout/aside.twig' %}         
+					{% endblock %}			
+				</div>
+				<div class="col-sm-9">				
+					 <h3> {{ title }}</h3>  						
+					 <hr>		
+					{% block page %}  
+					{% endblock %}	
+				</div>		
+			</div>	
+			<hr>
+			
+			{% block footer %}
+					{% include 'layout/footer.twig' %}         
+			{% endblock %}
+		</div>
+	</body>
+</html>

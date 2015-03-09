@@ -1,0 +1,113 @@
+{% extends "master.twig" %}
+
+{% block page %}
+<div id="cluster-chart" style="height:800px; width:100%;"></div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+
+	$.when($.getJSON("api/getdata"), $.getJSON("api/getkmeanstest")).then(buildChart, function(data){
+		console.log(data);
+	}); 
+});
+
+function buildChart(dataReq, clustersReq){
+    var datarows = dataReq[0];
+    var clusters = clustersReq[0];
+    var countrycolors = [];
+    for(i = 1; i < 15; i++){
+        countrycolors[i] = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+    }
+    var clusterAvg = [];
+	var sets = [];
+	for(var cluster in clusters){
+        var avg = 0.0;
+		var data = [];
+		for(var item in clusters[cluster]){
+			var value = clusters[cluster][item];
+            avg += parseFloat(datarows[value].gni);
+
+
+			data[data.length] = {color: countrycolors[datarows[value].country_id], x:parseFloat(datarows[value].date), y:parseFloat(datarows[value].gni)};
+		}
+        avg /= parseFloat(clusters.length);
+        clusterAvg[clusterAvg.length] = avg;
+		sets[sets.length] = {
+            name: "Cluster #"+cluster,
+            // color: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')',
+            data: data
+        }
+	}
+    for(var cl in clusterAvg){
+        $("#analysis").append("<p>Cluster #"+cl+" avg - "+clusterAvg[cl]+"</p>");
+    }
+
+	//-----
+	$('#cluster-chart').highcharts({
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'GNI over years for various countries'
+        },
+        subtitle: {
+            text: 'Source: World Bank'
+        },
+        xAxis: {
+            title: {
+                enabled: true,
+                text: 'Years'
+            },
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'GNI per capita, PPP ($)'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 100,
+            y: 70,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+            borderWidth: 1
+        },
+        plotOptions: {
+            scatter: {
+            	lineWidth: 3,
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x}, {point.y} $'
+                }
+            }
+        },
+        series: sets
+    });
+}
+</script>
+
+
+{% endblock %}

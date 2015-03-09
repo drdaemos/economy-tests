@@ -1,0 +1,19 @@
+{% extends "master.twig" %}
+
+{% block page %}
+<p>Hello, this is a fundamental economy analyzer for various macroeconomic indices across such countries as Russia, USA, Germany, Greece, Ukraine.</p>
+<p>Used macroeconomic indices are:
+	<ul>
+		<li>Wholesale Price Index (WPI)
+		<li>Consumer Price Index (CPI) 
+		<li>Unemployment Rate 
+		<li>GDP per capita in PPP 
+		<li>GNI per capita in PPP
+		<li>Government Debt Net Lending/Borrowing 
+	</ul>
+</p>
+<p>The main hypothesis is that GNI value (and GDP) is highly dependent on other mentioned value, and we can calculate a trend to be able to predict its dynamics and future values. We're also can estimate economy situation throughout various countries using all these indices. You know, just to be sure the country and its leader is on the right track.</p>
+<p>Secondly, we want to check if this data can be clusterized to at least 3 clusters, which will separate countries by their economy class.</p>
+<p>P.S. If you are anyhow interested in this system, or wishing to improve it, feel free to write us an email: <a href="mailto:drdaemos@gmail.com">drdaemos@gmail.com</a>
+
+{% endblock %}
