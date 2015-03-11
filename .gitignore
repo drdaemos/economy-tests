@@ -8,3 +8,4 @@ src/app/vendor/
 .sublime-grunt.cache
 cache/
 components/
+debug.log
